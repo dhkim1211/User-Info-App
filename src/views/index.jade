@@ -6,9 +6,3 @@ html
 			each user in users
 				h3= user.firstname + " " + user.lastname
 
-		form(name="searchbar", method="post")
-			div.input
-				label Search Names
-				input(type="text", id="name")
-			div.actions
-				input(type="submit", value="add")
