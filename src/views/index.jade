@@ -1,8 +1,22 @@
 doctype html
 html
 	head
+		link(href='main.css', rel='stylesheet', type='text/css')
 	body
+		div
+			ul
+				li 
+					strong User Information App
+				li 
+					a(href="/") Home
+				li 
+					a(href="search") Search
+				li 
+					a(href="newuser") New User
+
+
 		h2 All Users:
 			each user in users
 				h3= user.firstname + " " + user.lastname
+		
 

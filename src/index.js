@@ -1,6 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 
 var app = express(); 
@@ -9,6 +10,8 @@ var parsedData;
 
 app.set('views', './src/views');
 app.set('view engine', 'jade');
+
+app.use(express.static('./css'));
 
 app.get('/', function(req, res) {
 	fs.readFile('./users.json', function(err, data){
@@ -47,7 +50,7 @@ app.post('/search', function(req, res) {
 	for (var i = 0; i < parsedData.length; i++) {
 		
 		username = username.toUpperCase();
-		if (username == parsedData[i]['firstname'].toUpperCase() || username == parsedData[i]['lastname'].toUpperCase()) {
+		if (parsedData[i]['firstname'].toUpperCase().indexOf(username) > -1 || parsedData[i]['lastname'].toUpperCase().indexOf(username) > -1) {
 			nameMatch.push(parsedData[i]['firstname'] + " " + parsedData[i]['lastname']);
 		}
 	}
@@ -92,6 +95,9 @@ app.post('/newUser', function(req, res) {
 			console.log(err);
 		}
 		console.log('New User Added!');
+	})
+	res.render('index', {
+		users: parsedData
 	})
 })
 
