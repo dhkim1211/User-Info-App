@@ -1,10 +1,27 @@
 doctype html
 html
 	head
+		link(href='/css/main.css', rel='stylesheet', type='text/css')
 	body
+		script(src="//code.jquery.com/jquery-2.2.3.min.js")
+		script(src='/js/main.js')
+
+		div
+			ul
+				li 
+					strong User Information App
+				li 
+					a(href="/") Home
+				li 
+					a(href="search") Search
+				li 
+					a(href="newuser") New User
+
 		form(action="/search", name="searchbar", method="post")
 			div.input
-				label Search Names
-				input(type="text", name="name")
+				label Search Names  
+				input#search(type="text", name="name", placeholder="Search For Users")
 			div.actions
 				input(type="submit", value="add")
+
+		ul#results

@@ -11,7 +11,7 @@ var parsedData;
 app.set('views', './src/views');
 app.set('view engine', 'jade');
 
-app.use(express.static('./css'));
+app.use(express.static('./public'));
 
 app.get('/', function(req, res) {
 	fs.readFile('./users.json', function(err, data){
@@ -46,6 +46,7 @@ app.post('/search', function(req, res) {
 	var username = req.body.name;
 	console.log(username);
 	var nameMatch = [];
+	var ajax = req.body.ajax;
 
 	for (var i = 0; i < parsedData.length; i++) {
 		
@@ -59,9 +60,14 @@ app.post('/search', function(req, res) {
 		nameMatch.push("No Matches Found!");
 	}
 
-	res.render('users', {
-		nameMatches: nameMatch
-	});
+	if (!ajax) {
+		res.render('users', {
+			nameMatches: nameMatch
+		});
+	}
+	else {
+		res.send(nameMatch);
+	}
 });
 
 app.get('/newUser', function(req, res) {
