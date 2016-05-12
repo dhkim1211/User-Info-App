@@ -3,10 +3,9 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var parsedData;
 
 var app = express(); 
-
-var parsedData;
 
 app.set('views', './src/views');
 app.set('view engine', 'jade');
@@ -48,19 +47,29 @@ app.post('/search', function(req, res) {
 	var nameMatch = [];
 	var ajax = req.body.ajax;
 
+	fs.readFile('./users.json', function(err, data){
+		if (err) {
+			throw err;
+			console.log(err);
+		}
+
+		parsedData = JSON.parse(data);
+	})
+
 	for (var i = 0; i < parsedData.length; i++) {
 		
 		username = username.toUpperCase();
 		if (parsedData[i]['firstname'].toUpperCase().indexOf(username) > -1 || parsedData[i]['lastname'].toUpperCase().indexOf(username) > -1) {
-			nameMatch.push(parsedData[i]['firstname'] + " " + parsedData[i]['lastname']);
+			nameMatch.push(parsedData[i]);
 		}
 	}
 
-	if (nameMatch.length < 1) {
+	/*if (nameMatch.length < 1) {
 		nameMatch.push("No Matches Found!");
-	}
+	}*/
 
 	if (!ajax) {
+		console.log(nameMatch);
 		res.render('users', {
 			nameMatches: nameMatch
 		});
@@ -92,6 +101,15 @@ app.post('/newUser', function(req, res) {
 		"lastname": lastName,
 		"email": email
 	}
+
+	fs.readFile('./users.json', function(err, data){
+		if (err) {
+			throw err;
+			console.log(err);
+		}
+
+		parsedData = JSON.parse(data);
+	})
 
 	parsedData.push(newguy);
 

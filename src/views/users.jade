@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		link(href='main.css', rel='stylesheet', type='text/css')
+		link(href='/css/main.css', rel='stylesheet', type='text/css')
 	body
 		div
 			ul
@@ -15,4 +15,6 @@ html
 					a(href="newuser") New User
 
 		h2 Matches:
-			h3= nameMatches
+			ul
+				each name in nameMatches
+					li #{name.firstname} #{name.lastname} #{name.email}

@@ -3,8 +3,7 @@ html
 	head
 		link(href='/css/main.css', rel='stylesheet', type='text/css')
 	body
-		script(src="//code.jquery.com/jquery-2.2.3.min.js")
-		script(src='/js/main.js')
+		
 
 		div
 			ul
@@ -20,8 +19,12 @@ html
 		form(action="/search", name="searchbar", method="post")
 			div.input
 				label Search Names  
-				input#search(type="text", name="name", placeholder="Search For Users")
+				input#search(type="search", name="name", placeholder="Search For Users")
 			div.actions
 				input(type="submit", value="add")
 
 		ul#results
+
+
+		script(src="//code.jquery.com/jquery-2.2.3.min.js")
+		script(src='/js/main.js')

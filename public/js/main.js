@@ -1,10 +1,22 @@
 $(function(){
- $('#search').on('keyup', function(e){
-   //if(e.keyCode === 13) {
-     var parameters = { name: $(this).val(), ajax: true };
-       $.post('/search',parameters, function(data) {
-       	$('#results').html(data);
-     });
-    //};
- });
+	$('#search').on('keyup', function(e){
+
+	    var parameters = { name: $(this).val(), ajax: true };
+	    if (parameters.name) {
+			$.post('/search',parameters, function(data) {
+		   		//$('#results').html(data);
+
+		   		var $this = $('#results').empty();
+
+		   		for (x in data) {
+		   			$($this).append("<li> " + data[x].firstname + " " + data[x].lastname + " " + data[x].email + "</li>");
+		   		}
+		   		
+		 	});
+		}
+		else {
+			$('#results').empty();
+		}
+
+	});
 });
