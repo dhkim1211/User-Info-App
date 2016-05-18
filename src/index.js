@@ -1,7 +1,6 @@
-var express = require('express');
+	var express = require('express');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var path = require('path');
 
 var parsedData;
 
@@ -57,9 +56,11 @@ app.post('/search', function(req, res) {
 	})
 
 	for (var i = 0; i < parsedData.length; i++) {
-		
+		var fullname = parsedData[i]['firstname'] + " " + parsedData[i]['lastname'];
+		var lastnameFirst = parsedData[i]['lastname'] + ", " + parsedData[i]['firstname'];
 		username = username.toUpperCase();
-		if (parsedData[i]['firstname'].toUpperCase().indexOf(username) > -1 || parsedData[i]['lastname'].toUpperCase().indexOf(username) > -1) {
+		if (parsedData[i]['firstname'].toUpperCase().indexOf(username) > -1 || parsedData[i]['lastname'].toUpperCase().indexOf(username) > -1 || 
+				fullname.toUpperCase().indexOf(username) > -1 || lastnameFirst.toUpperCase().indexOf(username) > -1) {
 			nameMatch.push(parsedData[i]);
 		}
 	}

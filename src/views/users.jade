@@ -3,18 +3,18 @@ html
 	head
 		link(href='/css/main.css', rel='stylesheet', type='text/css')
 	body
-		div
-			ul
+		div.menu
+			ul.nav
+				li.title
+					strong userInfoApp
 				li 
-					strong User Information App
+					a(href="/") allUsers
 				li 
-					a(href="/") Home
+					a(href="search") searchUsers
 				li 
-					a(href="search") Search
-				li 
-					a(href="newuser") New User
+					a(href="newuser") newUser
 
 		h2 Matches:
-			ul
+			ul.users
 				each name in nameMatches
-					li #{name.firstname} #{name.lastname} #{name.email}
+					li #{name.firstname} #{name.lastname} - #{name.email}

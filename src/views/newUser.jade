@@ -3,18 +3,18 @@ html
 	head
 		link(href='/css/main.css', rel='stylesheet', type='text/css')
 	body
-		div
-			ul
+		div.menu
+			ul.nav
+				li.title
+					strong userInfoApp
 				li 
-					strong User Information App
+					a(href="/") allUsers
 				li 
-					a(href="/") Home
+					a(href="search") searchUsers
 				li 
-					a(href="search") Search
-				li 
-					a(href="newuser") New User
+					a(href="newuser") newUser
 
-		form(action="/newUser", name="searchbar", method="post")
+		form#searchname(action="/newUser", name="searchbar", method="post")
 			div.input
 				label First Name: 
 				input(type="text", name="firstname")
@@ -25,4 +25,4 @@ html
 				label Email: 
 				input(type="text", name="email")
 			div.actions
-				input(type="submit", value="add")
+				input(type="submit", value="Add")

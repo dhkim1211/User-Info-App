@@ -5,25 +5,24 @@ html
 	body
 		
 
-		div
-			ul
+		div.menu
+			ul.nav
+				li.title 
+					strong userInfoApp
 				li 
-					strong User Information App
+					a(href="/") allUsers
 				li 
-					a(href="/") Home
+					a(href="search") searchUsers
 				li 
-					a(href="search") Search
-				li 
-					a(href="newuser") New User
+					a(href="newuser") newUser
 
-		form(action="/search", name="searchbar", method="post")
+		form#searchname(action="/search", name="searchbar", method="post")
 			div.input
-				label Search Names  
-				input#search(type="search", name="name", placeholder="Search For Users")
+				label Search Names    
+				input#search(type="search", name="name", placeholder="Enter Name", autocomplete="off", list="results")
+				datalist#results
 			div.actions
-				input(type="submit", value="add")
-
-		ul#results
+				input(type="submit", value="Search")
 
 
 		script(src="//code.jquery.com/jquery-2.2.3.min.js")
