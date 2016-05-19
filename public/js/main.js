@@ -1,12 +1,15 @@
 $(function(){
+	var flag = true;
 	$('#search').on('keyup', function(e){
 
 	    var parameters = { name: $(this).val(), ajax: true };
 
+    	if (flag) {
+			flag = false;
+
 	    if (parameters.name) {
 
-	    	setTimeout(function(){
-				$.post('/search',parameters, function(data) {
+	    		$.post('/search',parameters, function(data) {
 			   		//$('#results').html(data);
 
 			   		var $this = $('#results').empty();
@@ -16,8 +19,13 @@ $(function(){
 			   		}
 	
 			 	});
-		 	}, 300);
+	    	}
+
+	    	setTimeout(function(){
+				flag = true;
+		 	}, 3000);
 		}
+		
 		else {
 			$('#results').empty();
 		}
