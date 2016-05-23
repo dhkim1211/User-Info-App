@@ -26,9 +26,6 @@ $(function(){
 		 	}, 3000);
 		}
 		
-		else {
-			$('#results').empty();
-		}
 
 	});
 });
